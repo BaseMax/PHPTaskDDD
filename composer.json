@@ -1,0 +1,12 @@
+{
+    "name": "max/php-task-ddd",
+    "type": "project",
+    "license": "GPL",
+    "authors": [
+        {
+            "name": "aliiahmadi",
+            "email": "aliahmadi.github@gmail.com"
+        }
+    ],
+    "require": {}
+}
