@@ -32,8 +32,18 @@ class Request
 
         $pathContent = explode("/", $path);
 
-        unset($pathContent[0]);
+        array_shift($pathContent);
 
         return $pathContent;
+    }
+
+    public function getTitle(): string|false
+    {
+        return trim($_POST["title"]) ?? false;
+    }
+
+    public function getDescription(): string|false
+    {
+        return trim($_POST["description"]) ?? false;
     }
 }

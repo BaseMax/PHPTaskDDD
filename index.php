@@ -8,15 +8,15 @@ $app = new Application();
 
 
 
-$app->router->get("/tasks", "TaskController@index");
+$app->router->get("tasks", "TaskController@index");
 
-$app->router->get("/tasks/{id}", "TaskController@show");
+$app->router->get("tasks/{id}", "TaskController@show");
 
-$app->router->post("/tasks", "TaskController@create");
+$app->router->post("tasks", "TaskController@create");
 
-$app->router->delete("/tasks/{id}", "TaskController@destroy");
+$app->router->delete("tasks/{id}", "TaskController@destroy");
 
-$app->router->put("/tasks/{id}", "TaskController@update");
+$app->router->put("tasks/{id}", "TaskController@update");
 
 
 $app->run();

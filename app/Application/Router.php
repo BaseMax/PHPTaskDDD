@@ -2,6 +2,8 @@
 
 namespace App\Application;
 
+use App\Controllers\TaskController;
+
 class Router
 {
 
@@ -48,18 +50,58 @@ class Router
 
         $callbacks = $this->routes[$method];
 
+        $controller = new TaskController();
+
         $fullPath = $this->request->getFullPath();
 
-        foreach ($callbacks as $route => $callback) {
+        if ($method === "post") {
+            $title = $this->request->getTitle();
 
-            $route = explode("/", $route);
+            $description = $this->request->getDescription();
 
-            if ($this->checker($fullPath, $route)) {
+            if ($title && $description) {
+                return $controller->create($title, $description);
             }
-        }
-    }
 
-    protected function checker(array $currectRoute, array $route): bool|int
-    {
+            header('Content-Type: application/json; charset=utf-8');
+
+            return json_encode([
+                "message" => "Invalid Input"
+            ]);
+        } else if ($method === "get") {
+
+            if (count($fullPath) === 1) {
+                return $controller->index();
+            } else if (count($fullPath) === 2) {
+                return $controller->show((int) $fullPath[1]);
+            }
+
+            header('Content-Type: application/json; charset=utf-8');
+
+            return json_encode([
+                "message" => "Invalid Input"
+            ]);
+        } else if ($method === "delete") {
+
+            if (count($fullPath) !== 2) {
+                header('Content-Type: application/json; charset=utf-8');
+
+                return json_encode([
+                    "message" => "Not Found"
+                ]);
+            }
+
+            return $controller->destroy((int) $fullPath[1]);
+        } else if ($method === "put") {
+            if (count($fullPath) !== 2) {
+                header('Content-Type: application/json; charset=utf-8');
+
+                return json_encode([
+                    "message" => "Not Found"
+                ]);
+            }
+
+            return $controller->update((int) $fullPath[1], $this->request->getTitle(), $this->request->getDescription());
+        }
     }
 }

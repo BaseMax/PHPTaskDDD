@@ -6,26 +6,26 @@ class TaskController
 {
     public function index()
     {
-        // todo
+        echo "index";
     }
 
-    public function show()
+    public function show(int $id)
     {
-        // todo
+        echo "show $id";
     }
 
-    public function update()
+    public function update(int $id, string $title = null, string $description = null)
     {
-        // todo
+        echo "update $id";
     }
 
-    public function destroy()
+    public function destroy(int $id)
     {
-        // todo
+        echo "destroy $id";
     }
 
-    public function create()
+    public function create(string $title, string $description)
     {
-        // todo
+        echo "create";
     }
 }
