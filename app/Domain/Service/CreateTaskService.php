@@ -17,7 +17,7 @@ class CreateTaskService
         $this->taskRepository = $taskRepository;
     }
 
-    public function execute(TaskTitle $title, TaskDescription $description): TaskId
+    public function execute(TaskTitle $title, TaskDescription $description): Task
     {
         $id = TaskId::generate();
 
@@ -25,6 +25,6 @@ class CreateTaskService
 
         $this->taskRepository->save($task);
 
-        return $id;
+        return $task;
     }
 }
