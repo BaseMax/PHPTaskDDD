@@ -16,6 +16,6 @@ class Application
 
     public function run()
     {
-        $this->router->resolve();
+        return $this->router->resolve();
     }
 }

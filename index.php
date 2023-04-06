@@ -19,4 +19,6 @@ $app->router->delete("tasks/{id}", "TaskController@destroy");
 $app->router->put("tasks/{id}", "TaskController@update");
 
 
-$app->run();
+$response = $app->run();
+
+return $response;

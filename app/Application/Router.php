@@ -44,11 +44,7 @@ class Router
 
     public function resolve()
     {
-        $path = $this->request->getPath();
-
         $method = $this->request->getMethod();
-
-        $callbacks = $this->routes[$method];
 
         $controller = new TaskController();
 
