@@ -7,7 +7,7 @@ use App\Domain\Model\Task;
 
 interface TaskRepositoryInterface
 {
-    public function getById(TaskId $id): ?Task;
+    public function getById(int $id): ?Task;
 
     public function save(Task $task): void;
 

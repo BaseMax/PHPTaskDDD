@@ -21,7 +21,7 @@ class CreateTaskService
     {
         $id = TaskId::generate();
 
-        $task = new Task($id, $title, $description);
+        $task = new Task($title, $description);
 
         $this->taskRepository->save($task);
 

@@ -12,9 +12,9 @@ class Task
     private TaskTitle $title;
     private TaskDescription $description;
 
-    public function __construct(TaskId $id, TaskTitle $title, TaskDescription $description)
+    public function __construct(TaskTitle $title, TaskDescription $description)
     {
-        $this->id = $id;
+        $this->id = uniqid();
         $this->title = $title;
         $description = $description;
     }
