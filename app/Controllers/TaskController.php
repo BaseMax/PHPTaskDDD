@@ -10,6 +10,7 @@ use App\Domain\Repository\TaskRepository;
 use App\Domain\Service\CreateTaskService;
 use App\Domain\Service\DeleteTaskService;
 use App\Domain\Service\ReadTaskService;
+use App\Domain\Service\UpdateTaskService;
 
 class TaskController
 {
@@ -32,12 +33,14 @@ class TaskController
         ];
     }
 
-    public function update(int $id, string $title = null, string $description = null)
+    public function update(int $id, string $title, string $description)
     {
-        echo "update $id";
+        $service = new UpdateTaskService(new TaskRepository());
+
+        return $service->update($id, new Task(new TaskTitle($title), new TaskDescription($description)));
     }
 
-    public function destroy(int $id)
+    public function destroy(int $id) // done
     {
         $service = new DeleteTaskService(new TaskRepository());
 

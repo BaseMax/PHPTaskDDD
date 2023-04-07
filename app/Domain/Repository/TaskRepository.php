@@ -98,8 +98,31 @@ class TaskRepository implements TaskRepositoryInterface
         ]);
     }
 
-    public function update(Task $task): void
+    public function update(int $id, Task $task): array
     {
+        try {
+            $this->db->beginTransaction();
+
+            $stm = $this->db->prepare(
+                "UPDATE tasks SET title=:title , description=:description WHERE id = :id"
+            );
+
+            $stm->execute([
+                "id" => $id,
+                "title" => $task->getTitle()->getTitle(),
+                "description" => $task->getDescription()->getDescription()
+            ]);
+
+            $this->db->commit();
+        } catch (Exception $e) {
+            return [
+                "error" => $e->getMessage()
+            ];
+        }
+
+        return [
+            "message" => "Task Updated Successfuly"
+        ];
     }
 
     public function getAll(): array

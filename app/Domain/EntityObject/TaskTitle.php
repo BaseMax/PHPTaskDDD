@@ -11,7 +11,9 @@ class TaskTitle
     public function __construct(string $title)
     {
         if (empty(trim($title))) {
-            throw new Exception("Title Can not be Empty");
+            return [
+                "message" => "titlecan not be empty"
+            ];
         }
 
         $this->title = trim($title);

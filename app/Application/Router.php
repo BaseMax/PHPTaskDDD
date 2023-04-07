@@ -97,7 +97,7 @@ class Router
                 ]);
             }
 
-            return $controller->update((int) $fullPath[1], $this->request->getTitle(), $this->request->getDescription());
+            return $controller->update((int) $fullPath[1], $this->request->getUpdateTitle(), $this->request->getUpdateDescription());
         }
     }
 }

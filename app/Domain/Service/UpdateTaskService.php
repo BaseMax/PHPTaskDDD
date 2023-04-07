@@ -14,8 +14,8 @@ class UpdateTaskService
         $this->taskRepository = $taskRepository;
     }
 
-    public function execute(Task $task): void
+    public function update(int $id, Task $task): array
     {
-        $this->taskRepository->update($task);
+        return $this->taskRepository->update($id, $task);
     }
 }

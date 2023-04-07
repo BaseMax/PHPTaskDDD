@@ -11,7 +11,9 @@ class TaskDescription
     public function __construct(string $description)
     {
         if (empty(trim($description))) {
-            throw new Exception("Title Can not be Empty");
+            return [
+                "message" => "Description Can not be Empty"
+            ];
         }
 
         $this->description = $description;

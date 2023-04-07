@@ -11,7 +11,7 @@ interface TaskRepositoryInterface
 
     public function save(Task $task): string|false;
 
-    public function update(Task $task): void;
+    public function update(int $id, Task $task): array;
 
     public function delete(int $id): string|array;
 

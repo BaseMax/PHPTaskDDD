@@ -46,4 +46,26 @@ class Request
     {
         return trim($_POST["description"]) ?? false;
     }
+
+    public function getUpdateTitle(): string|false
+    {
+        $data = file_get_contents('php://input');
+
+        $task_data = json_decode($data);
+
+        $title = $task_data->title;
+
+        return $title;
+    }
+
+    public function getUpdateDescription(): string|false
+    {
+        $data = file_get_contents('php://input');
+
+        $task_data = json_decode($data);
+
+        $description = $task_data->description;
+
+        return $description;
+    }
 }
