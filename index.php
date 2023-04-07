@@ -24,4 +24,5 @@ $app->router->put("tasks/{id}", "TaskController@update");
 
 $response = $app->run();
 
-return $response;
+header("Content-Type: application/json");
+echo json_encode($response);

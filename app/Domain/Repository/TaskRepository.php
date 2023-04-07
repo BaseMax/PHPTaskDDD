@@ -35,7 +35,7 @@ class TaskRepository implements TaskRepositoryInterface
     {
     }
 
-    public function save(Task $task): void
+    public function save(Task $task): string|false
     {
         $this->db->beginTransaction();
 
@@ -55,6 +55,10 @@ class TaskRepository implements TaskRepositoryInterface
 
             throw new Exception("Can not create new Task");
         }
+
+        return json_encode([
+            "message" => "task created successfuly"
+        ]);
     }
 
     public function update(Task $task): void
@@ -63,6 +67,14 @@ class TaskRepository implements TaskRepositoryInterface
 
     public function getAll(): array
     {
-        return [];
+        $stm = $this->db->prepare(
+            "SELECT * FROM tasks"
+        );
+
+        $stm->execute();
+
+        $result = $stm->fetchAll(PDO::FETCH_ASSOC);
+
+        return $result;
     }
 }

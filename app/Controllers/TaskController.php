@@ -8,12 +8,15 @@ use App\Domain\EntityObject\TaskDescription;
 use App\Domain\Model\Task;
 use App\Domain\Repository\TaskRepository;
 use App\Domain\Service\CreateTaskService;
+use App\Domain\Service\ReadTaskService;
 
 class TaskController
 {
     public function index()
     {
-        echo "index";
+        $service = new ReadTaskService(new TaskRepository());
+
+        return $service->getAll();
     }
 
     public function show(int $id)

@@ -9,7 +9,7 @@ interface TaskRepositoryInterface
 {
     public function getById(int $id): ?Task;
 
-    public function save(Task $task): void;
+    public function save(Task $task): string|false;
 
     public function update(Task $task): void;
 
