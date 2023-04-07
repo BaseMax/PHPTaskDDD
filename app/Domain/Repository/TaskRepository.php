@@ -13,13 +13,13 @@ class TaskRepository implements TaskRepositoryInterface
 
     public function __construct()
     {
-        $host = getenv("DB_HOST");
+        $host = $_ENV["DB_HOST"];
 
-        $user = getenv("DB_USERNAME");
+        $user = $_ENV["DB_USERNAME"];
 
-        $password = getenv("DB_PASSWORD");
+        $password = $_ENV["DB_PASSWORD"];
 
-        $database = getenv("DB_NAME");
+        $database = $_ENV["DB_NAME"];
 
         $this->db = new PDO("mysql:host=" . $host . ";dbname=" . $database, $user, $password, [
             PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8'
@@ -45,8 +45,8 @@ class TaskRepository implements TaskRepositoryInterface
             );
 
             $stm->execute([
-                $task->getTitle(),
-                $task->getDescription()
+                $task->getTitle()->getTitle(),
+                $task->getDescription()->getDescription()
             ]);
 
             $this->db->commit();

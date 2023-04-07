@@ -8,18 +8,18 @@ use App\Domain\EntityObject\TaskDescription;
 
 class Task
 {
-    private TaskId $id;
+    private int $id;
     private TaskTitle $title;
     private TaskDescription $description;
 
     public function __construct(TaskTitle $title, TaskDescription $description)
     {
-        $this->id = uniqid();
+        $this->id = (int) uniqid();
         $this->title = $title;
-        $description = $description;
+        $this->description = $description;
     }
 
-    public function getId(): TaskId
+    public function getId()
     {
         return $this->id;
     }

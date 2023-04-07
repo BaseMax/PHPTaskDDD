@@ -17,14 +17,10 @@ class CreateTaskService
         $this->taskRepository = $taskRepository;
     }
 
-    public function execute(TaskTitle $title, TaskDescription $description): Task
+    public function createTask(TaskTitle $title, TaskDescription $description)
     {
-        $id = TaskId::generate();
-
         $task = new Task($title, $description);
 
         $this->taskRepository->save($task);
-
-        return $task;
     }
 }

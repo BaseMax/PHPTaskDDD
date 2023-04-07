@@ -2,6 +2,13 @@
 
 namespace App\Controllers;
 
+use App\Domain\EntityObject\TaskId;
+use App\Domain\EntityObject\TaskTitle;
+use App\Domain\EntityObject\TaskDescription;
+use App\Domain\Model\Task;
+use App\Domain\Repository\TaskRepository;
+use App\Domain\Service\CreateTaskService;
+
 class TaskController
 {
     public function index()
@@ -26,6 +33,16 @@ class TaskController
 
     public function create(string $title, string $description)
     {
-        echo "create";
+        $taskTitle = new TaskTitle($title);
+
+        $taskDescription = new TaskDescription($description);
+
+        $taskRepository = new TaskRepository();
+
+        $service = new CreateTaskService($taskRepository);
+
+        $result = $service->createTask($taskTitle, $taskDescription);
+
+        return $result;
     }
 }

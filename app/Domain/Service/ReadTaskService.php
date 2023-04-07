@@ -17,6 +17,9 @@ class ReadTaskService
 
     public function getById(TaskId $id): Task
     {
+
+        $id = $id->getId();
+
         return $this->taskRepository->getById($id);
     }
 
