@@ -13,7 +13,7 @@ interface TaskRepositoryInterface
 
     public function update(Task $task): void;
 
-    public function delete(Task $task): string;
+    public function delete(int $id): string|array;
 
     public function getAll(): array;
 }

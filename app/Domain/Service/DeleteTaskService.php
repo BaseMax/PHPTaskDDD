@@ -19,8 +19,6 @@ class DeleteTaskService
 
         $id = $id->getId();
 
-        $task = $this->taskRepository->getById($id);
-
-        $this->taskRepository->delete($task);
+        $this->taskRepository->delete($id);
     }
 }

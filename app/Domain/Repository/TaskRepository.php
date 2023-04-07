@@ -49,21 +49,27 @@ class TaskRepository implements TaskRepositoryInterface
         return new Task(new TaskTitle($result[0]["title"]), new TaskDescription($result[0]["description"]));
     }
 
-    public function delete(Task $task): string
+    public function delete(int $id): string|array
     {
-        // $this->db->beginTransaction();
+        try {
+            $this->db->beginTransaction();
 
-        // try{
-        //     $stm = $this->db->prepare(
-        //         "DELETE FROM tasks WHERE id = :id"
-        //     );
+            $stm = $this->db->prepare(
+                "DELETE FROM tasks WHERE id = :id"
+            );
 
-        //     $stm->execute(
-        //         $task->getId()
-        //     )
-        // }
+            $stm->execute([
+                "id" => $id
+            ]);
 
-        return "";
+            $this->db->commit();
+        } catch (Exception $e) {
+            return $e->getMessage();
+        }
+
+        return [
+            "message" => "Task Deleted Successfuly"
+        ];
     }
 
     public function save(Task $task): string|false

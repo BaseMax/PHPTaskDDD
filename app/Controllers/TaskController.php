@@ -13,14 +13,14 @@ use App\Domain\Service\ReadTaskService;
 
 class TaskController
 {
-    public function index()
+    public function index() // done
     {
         $service = new ReadTaskService(new TaskRepository());
 
         return $service->getAll();
     }
 
-    public function show(int $id)
+    public function show(int $id) // done
     {
         $service = new ReadTaskService(new TaskRepository());
 
@@ -46,7 +46,7 @@ class TaskController
         return $result;
     }
 
-    public function create(string $title, string $description)
+    public function create(string $title, string $description) // done
     {
         $taskTitle = new TaskTitle($title);
 
