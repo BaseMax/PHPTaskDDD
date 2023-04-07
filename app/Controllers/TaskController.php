@@ -8,6 +8,7 @@ use App\Domain\EntityObject\TaskDescription;
 use App\Domain\Model\Task;
 use App\Domain\Repository\TaskRepository;
 use App\Domain\Service\CreateTaskService;
+use App\Domain\Service\DeleteTaskService;
 use App\Domain\Service\ReadTaskService;
 
 class TaskController
@@ -21,7 +22,14 @@ class TaskController
 
     public function show(int $id)
     {
-        echo "show $id";
+        $service = new ReadTaskService(new TaskRepository());
+
+        $result = $service->getById($id);
+
+        return [
+            $result->getTitle()->getTitle(),
+            $result->getDescription()->getDescription()
+        ];
     }
 
     public function update(int $id, string $title = null, string $description = null)
@@ -31,7 +39,11 @@ class TaskController
 
     public function destroy(int $id)
     {
-        echo "destroy $id";
+        $service = new DeleteTaskService(new TaskRepository());
+
+        $result =  $service->delete(new TaskId($id));
+
+        return $result;
     }
 
     public function create(string $title, string $description)

@@ -2,7 +2,9 @@
 
 namespace App\Domain\Repository;
 
+use App\Domain\EntityObject\TaskDescription;
 use App\Domain\EntityObject\TaskId;
+use App\Domain\EntityObject\TaskTitle;
 use App\Domain\Model\Task;
 use Exception;
 use PDO;
@@ -28,11 +30,40 @@ class TaskRepository implements TaskRepositoryInterface
 
     public function getById(int $id): ?Task
     {
-        return null;
+        $stm = $this->db->prepare(
+            "SELECT * FROM tasks WHERE id = :id"
+        );
+
+        $stm->execute([
+            "id" => $id
+        ]);
+
+        $result = $stm->fetchAll(PDO::FETCH_ASSOC);
+
+        if (empty($result)) {
+            return json_encode([
+                "message" => "Task Not Found."
+            ]);
+        }
+
+        return new Task(new TaskTitle($result[0]["title"]), new TaskDescription($result[0]["description"]));
     }
 
-    public function delete(Task $task): void
+    public function delete(Task $task): string
     {
+        // $this->db->beginTransaction();
+
+        // try{
+        //     $stm = $this->db->prepare(
+        //         "DELETE FROM tasks WHERE id = :id"
+        //     );
+
+        //     $stm->execute(
+        //         $task->getId()
+        //     )
+        // }
+
+        return "";
     }
 
     public function save(Task $task): string|false

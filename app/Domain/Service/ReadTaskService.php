@@ -15,11 +15,8 @@ class ReadTaskService
         $this->taskRepository = $taskRepository;
     }
 
-    public function getById(TaskId $id): Task
+    public function getById(int $id): Task
     {
-
-        $id = $id->getId();
-
         return $this->taskRepository->getById($id);
     }
 
