@@ -1,0 +1,84 @@
+{
+	"info": {
+		"_postman_id": "39f5df32-109e-4421-9bb8-1b930771c67b",
+		"name": "PHPTaskDDD",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "getAllTasks",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8000/tasks"
+			},
+			"response": []
+		},
+		{
+			"name": "getTaskById",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8000/tasks/1"
+			},
+			"response": []
+		},
+		{
+			"name": "createTask",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "title",
+							"value": "learning laravel",
+							"type": "default"
+						},
+						{
+							"key": "description",
+							"value": "this is description for learning laravel task",
+							"type": "default"
+						}
+					]
+				},
+				"url": "http://127.0.0.1:8000/tasks"
+			},
+			"response": []
+		},
+		{
+			"name": "deleteTask",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": "http://localhost:8000/tasks/1"
+			},
+			"response": []
+		},
+		{
+			"name": "updateTask",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "title",
+							"value": "this is updated title for first task",
+							"type": "default"
+						},
+						{
+							"key": "description",
+							"value": "also this is updated description for first task",
+							"type": "default"
+						}
+					]
+				},
+				"url": "http://localhost:8000/tasks/1"
+			},
+			"response": []
+		}
+	]
+}
