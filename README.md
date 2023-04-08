@@ -24,7 +24,9 @@ cd PHPTaskDDD
 composer install
 ```
 
-Configure the database connection in config/db.php.
+Copy the `.env.example` file to `.env` and put real values.
+
+Configure the database connection in `config/db.php`.
 
 Run the database migration:
 ```bash
